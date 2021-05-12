@@ -20,11 +20,11 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Set current date as env variable
-        run: echo "NOW::$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
-      - name: Echo current date
-        run: echo $NOW
+
     steps:
+    - name: Get current date
+        id: date
+        run: echo "::set-output name=date::(date +'%Y-%m-%dT%H:%M:%S')"
     - name: Checkout
       uses: actions/checkout@v2
 
@@ -44,7 +44,7 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: mynode
-        IMAGE_TAG: latest
+        IMAGE_TAG: latest- ${{ steps.date.outputs.date }}
       run: |
         # Build a docker container and push it to ECR 
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
