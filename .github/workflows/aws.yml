@@ -50,7 +50,7 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: mynode
-        #IMAGE_TAG: latest-${{ env.var }}
+        IMAGE_TAG: latest-
       run: |
         #echo "${{IMAGE_TAG}}"
         #echo "${{env.var}}"
