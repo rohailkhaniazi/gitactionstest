@@ -1,15 +1,27 @@
-FROM node:10
+FROM python:2.7
 
-# Create app directory
+# Creating Application Source Code Directory
+RUN mkdir -p /usr/src/app
+
+# Setting Home Directory for containers
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+# Installing python dependencies
+COPY requirements.txt /usr/src/app/
+RUN pip install --no-cache-dir -r requirements.txt
 
-RUN npm install
+# Copying src code to Container
+COPY . /usr/src/app
 
-# Bundle app source
-COPY . .
+# Application Environment variables
+#ENV APP_ENV development
+ENV PORT 8080
 
-EXPOSE 8080
+# Exposing Ports
+EXPOSE $PORT
 
-CMD [ "node", "app.js" ]
+# Setting Persistent data
+VOLUME ["/app-data"]
+
+# Running Python Application
+CMD gunicorn -b :$PORT -c gunicorn.conf.py main:app
