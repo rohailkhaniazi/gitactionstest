@@ -24,11 +24,12 @@ jobs:
     - name: Get current date
       id: date
       run: |
-           echo "var=$(date) " >> $GITHUB_ENV
+           
+           echo ::set-output name=var::${$(date)}
     - name: echo-date
       run: |
-           echo "${{env.var}}"
-           echo "${{GUTHUB_ENV}}"
+           echo ${{ steps.date.outputs.var }}
+
       
     - name: Checkout
       uses: actions/checkout@v2
