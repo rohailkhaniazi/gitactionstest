@@ -50,10 +50,10 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: mynode
-        IMAGE_TAG: latest-${{ env.var }}
+        #IMAGE_TAG: latest-${{ env.var }}
       run: |
-        echo "${{IMAGE_TAG}}"
-        echo "${{env.var}}"
+        #echo "${{IMAGE_TAG}}"
+        #echo "${{env.var}}"
         # Build a docker container and push it to ECR 
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         echo "Pushing image to ECR..."
