@@ -9,16 +9,10 @@ jobs:
   release_new_tag:
     runs-on: ubuntu-latest
     steps:
-        - name: Read and assign
-          id: output_test
-          run: |
-           input_file="new.txt"
-           while read line
-           do
-            file_text=$line
-           done < "$input_file"
-           echo ::set-output name=new_value::$file_text
-        - name: echo file
-          id: build-image
-          run: |
-            echo ${​​​​{​​​​​​​​​​​ steps.output_test.outputs.new_value }​​​​​​​​​​​}​​​​​​​​​​​​​​​​​​
+      - name: Read package.json
+        id: package
+        uses: juliangruber/read-file-action@v1
+        with:
+         path: ../package.json
+      - name: Echo package.json
+        run: echo ${{ steps.package.outputs.content }}
