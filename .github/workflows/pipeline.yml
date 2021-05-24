@@ -11,7 +11,8 @@ jobs:
     steps:
      - name: Read package.json
        id: package
-       uses: juliangruber/read-file-action@v1
+       uses: juliangruber/read-file-action@v1 
+     - uses: actions/checkout@v1
        with:
         path: ${{ github.workspace }}/tags.json
      - name: Echo package.json
