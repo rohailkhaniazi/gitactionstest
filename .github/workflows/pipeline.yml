@@ -18,6 +18,7 @@ jobs:
             file_text=$line
            done < "$input_file"
            echo ::set-output name=new_value::$file_text
-
-  # test to see if done correctly - should echo "value"
-        - run: echo ${​​​​{​​​​​​​​​​​ steps.output_test.outputs.new_value }​​​​​​​​​​​}​​​​​​​​​​​​​​​​​​
+        - name: echo file
+          id: build-image
+          run: |
+            echo ${​​​​{​​​​​​​​​​​ steps.output_test.outputs.new_value }​​​​​​​​​​​}​​​​​​​​​​​​​​​​​​
