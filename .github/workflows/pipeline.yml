@@ -16,7 +16,7 @@ jobs:
     - uses: pCYSl5EDgo/cat@master
       id: hello
       with:
-        path: text.txt
+        path: ${{ github.workspace }}/requirements.txt
 
     - run: echo $TEXT
       env:
