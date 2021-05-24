@@ -1,0 +1,23 @@
+name: Auto-Tag Release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  release_new_tag:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Read and assign
+          id: output_test
+          run: |
+           input_file="new.txt"
+           while read line
+           do
+            file_text=$line
+           done < "$input_file"
+           echo ::set-output name=new_value::$file_text
+
+  # test to see if done correctly - should echo "value"
+        - run: echo ${​​​​{​​​​​​​​​​​ steps.output_test.outputs.new_value }​​​​​​​​​​​}​​​​​​​​​​​​​​​​​​
