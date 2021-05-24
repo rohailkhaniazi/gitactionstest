@@ -5,14 +5,19 @@ on:
     branches:
       - master
 
+
 jobs:
-  release_new_tag:
+  echo:
     runs-on: ubuntu-latest
+    
     steps:
-      - name: Read package.json
-        id: package
-        uses: juliangruber/read-file-action@v1
-        with:
-         path: ../package.json
-      - name: Echo package.json
-        run: echo ${{ steps.package.outputs.content }}
+    - run: echo -n -e "HELLO\n !\n World!" > text.txt
+
+    - uses: pCYSl5EDgo/cat@master
+      id: hello
+      with:
+        path: text.txt
+
+    - run: echo $TEXT
+      env:
+        TEXT: ${{ steps.hello.outputs.text }}
