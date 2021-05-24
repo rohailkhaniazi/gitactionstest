@@ -21,12 +21,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-     - name: Read tags.txt
+     - name: Read tags.json
        id: package
        uses: juliangruber/read-file-action@v1
        with:
-         path: ./tags.txt
-     - name: Echo tags.txt
+         path: ./tags.json
+     - name: Echo tags.json
        run: echo ${{ steps.package.outputs.content }}
 
  #   steps:
