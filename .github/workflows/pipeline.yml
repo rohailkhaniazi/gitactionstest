@@ -4,20 +4,15 @@ on:
   push:
     branches:
       - master
-
-
 jobs:
-  echo:
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
-    
     steps:
-    - run: echo -n -e "HELLO\n !\n World!" > text.txt
-
-    - uses: pCYSl5EDgo/cat@master
-      id: hello
-      with:
-        path: ${{ github.workspace }}/requirements.txt
-
-    - run: echo $TEXT
-      env:
-        TEXT: ${{ steps.hello.outputs.text }}
+     - name: Read package.json
+       id: package
+       uses: juliangruber/read-file-action@v1
+       with:
+        path: ${{ github.workspace }}/tags.json
+     - name: Echo package.json
+       run: echo ${{ steps.package.outputs.content }}
