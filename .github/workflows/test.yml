@@ -29,4 +29,4 @@ jobs:
       env:
         working-directory: ./tags
       run: |
-         echo "./tags"
+          cat ./tags/tags.json
