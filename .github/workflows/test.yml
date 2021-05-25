@@ -29,5 +29,5 @@ jobs:
       env:
         working-directory: ./tags
       run: |
-          var=$( cat ./tags/tags.json )
+          var=$( cat ./tags/tags.txt )
           echo "$var"
