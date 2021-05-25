@@ -39,10 +39,13 @@ jobs:
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: mynode
-        IMAGE_TAG: latest
+        ECR_REPOSITORY: newrepo
+        #IMAGE_TAG: latest
+        working-directory: ./tags
       run: |
         # Build a docker container and push it to ECR 
+        IMAGE_TAG=$( cat ./tags/tags.txt )
+        echo "$IMAGE_TAG"
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         echo "Pushing image to ECR..."
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
