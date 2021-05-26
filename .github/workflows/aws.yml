@@ -6,7 +6,13 @@
 #    For example: `aws ecr create-repository --repository-name my-ecr-repo --region us-east-2`.
 #    Replace the value of `ECR_REPOSITORY` in the workflow below with your repository's name.
 #    Replace the value of `aws-region` in the workflow below with your repository's region.
-
+#    ***Variables***
+#    ECR_REPOSITORY: ECR repository name
+#    working-directory: Directory in git repository which has tag/version file
+#    IMAGE_TAG=$( cat path to file of tag/version )   
+#
+#
+#
 on:
   push:
     branches: [ master ]
@@ -40,7 +46,6 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: newrepo
-        #IMAGE_TAG: latest
         working-directory: ./tags
       run: |
         # Build a docker container and push it to ECR 
