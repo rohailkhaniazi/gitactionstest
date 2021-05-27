@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.TOKEN }}
     steps:
     - uses: actions/checkout@v2 ## https://github.com/actions/checkout
       with:
