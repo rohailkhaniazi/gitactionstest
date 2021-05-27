@@ -50,7 +50,7 @@ jobs:
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: newrepo
+        ECR_REPOSITORY: new
         working-directory: ./tags
       run: |
         # Build a docker container and push it to ECR 
