@@ -29,3 +29,7 @@ jobs:
           echo VERSION
       env:
           SOURCE_NAME: ${{ steps.get_version.outputs.VERSION }}
+    - id: tag_release
+      uses: rymndhng/release-on-push-action@v0.16.0      
+    outputs:
+      release_version: ${{ steps.tag_release.outputs.version }}
