@@ -23,9 +23,9 @@ jobs:
         WITH_V: true
     - name: Get the version
       id: get_version
-      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+      run: echo ::set-env name=VERSION::$(echo ${GITHUB_REF:10})
     - name: Build base image
       run: |
-          echo $VERSION
+          echo VERSION
       env:
           SOURCE_NAME: ${{ steps.get_version.outputs.VERSION }}
