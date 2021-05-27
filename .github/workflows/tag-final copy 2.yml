@@ -18,7 +18,7 @@ jobs:
     - name: Bump version and push tag
       uses: anothrNick/github-tag-action@1.17.2
       env:
-        TOKEN: ${{ secrets.TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
         RELEASE_BRANCHES: master
         INITIAL_VERSION: v1.0.0
         DEFAULT_BUMP: patch
@@ -32,3 +32,5 @@ jobs:
       run: |
           echo "Got tag name ${{ steps.release.outputs.tag_name }}"
           echo "Got release version ${{ steps.release.outputs.version }}"
+          var=${{ steps.release.outputs.tag_name }}
+          echo $var
