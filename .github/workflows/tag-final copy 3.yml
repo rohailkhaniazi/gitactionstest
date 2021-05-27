@@ -17,12 +17,12 @@ jobs:
       with:
         bump_version_scheme: minor
         tag_prefix: v1.0.0      
-    - name: Check Output Parameters
-      run: |
-          echo "Got tag name ${{ steps.release.outputs.tag_name }}"
-          echo "Got release version ${{ steps.release.outputs.version }}"
-          var=${{ steps.release.outputs.tag_name }}
-          echo $var
+   # - name: Check Output Parameters
+    #  run: |
+    #      echo "Got tag name ${{ steps.release.outputs.tag_name }}"
+     #     echo "Got release version ${{ steps.release.outputs.version }}"
+      #    var=${{ steps.release.outputs.tag_name }}
+       #   echo $var
     - name: Check Output Parameters
       run: |
           varw=${{ steps.release.outputs.tag_name }}
