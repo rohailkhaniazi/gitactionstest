@@ -25,11 +25,16 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-
+    env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
     steps:
+    - id: release
+      uses: rymndhng/release-on-push-action@master
+      with:
+        bump_version_scheme: minor
+        tag_prefix: v  
     - name: Checkout
       uses: actions/checkout@v2
-
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -49,9 +54,11 @@ jobs:
         working-directory: ./tags
       run: |
         # Build a docker container and push it to ECR 
-        IMAGE_TAG=$( cat ./tags/tags.txt )
-        echo "$IMAGE_TAG"
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        #IMAGE_TAG=$( cat ./tags/tags.txt )
+        #echo "$IMAGE_TAG"
+        varw=${{ steps.release.outputs.tag_name }}
+        echo "$varw"
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$varw .
         echo "Pushing image to ECR..."
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$varw
+        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$varw"
