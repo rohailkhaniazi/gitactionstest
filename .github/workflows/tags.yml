@@ -1,0 +1,18 @@
+on:
+  push:
+    branches: [ master ]
+  #pull_request:
+  #  branches: [ master ]
+
+name: Python Project `my-app` CI on ECR
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
