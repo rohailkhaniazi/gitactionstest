@@ -1,0 +1,30 @@
+name: Bump version
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - 'README.md'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2 ## https://github.com/actions/checkout
+      with:
+        fetch-depth: '0'
+    - name: Bump version and push tag
+      uses: anothrNick/github-tag-action@1.17.2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        RELEASE_BRANCHES: master
+        INITIAL_VERSION: v1.0.0
+        DEFAULT_BUMP: patch
+        WITH_V: true
+    - uses: actions/checkout@v2
+    - name: Set env
+      run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+    - name: Test
+      run: |
+          echo $RELEASE_VERSION
+          echo ${{ env.RELEASE_VERSION }}
