@@ -25,4 +25,5 @@ jobs:
           echo $var
     - name: Check Output Parameters
       run: |
+          var=${{ steps.release.outputs.tag_name }}
           echo $var
