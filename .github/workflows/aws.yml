@@ -10,7 +10,7 @@
 #    ECR_REPOSITORY: ECR repository name
 #    working-directory: Directory in git repository which has tag/version file
 #    IMAGE_TAG=$( cat path to file of tag/version )   
-#
+#sdasd
 #
 #
 on:
