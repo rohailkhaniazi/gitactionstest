@@ -17,7 +17,7 @@ jobs:
       uses: anothrNick/github-tag-action@1.17.2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        RELEASE_BRANCHES: develop
+        RELEASE_BRANCHES: master
         INITIAL_VERSION: v1.0.0
         DEFAULT_BUMP: patch
         WITH_V: true
