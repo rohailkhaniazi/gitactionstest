@@ -29,11 +29,11 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
     steps:
     - id: release
-      uses: rymndhng/release-on-push-action@master
+      uses: rohailkhaniazi/release-action@master
       with:
         bump_version_scheme: minor
         #tag_prefix: ""
-        tag_name: "0.0"
+        #tag_name: "0.0"
     #- name: Checkout
     #  uses: actions/checkout@v2
     #- name: Configure AWS credentials
