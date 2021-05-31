@@ -32,7 +32,7 @@ jobs:
       uses: rymndhng/release-on-push-action@master
       with:
         bump_version_scheme: minor
-        tag_prefix: "0.0"
+        tag_prefix: ""
     #- name: Checkout
     #  uses: actions/checkout@v2
     #- name: Configure AWS credentials
